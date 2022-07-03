@@ -1,5 +1,3 @@
-const { PeerServer } = require("peer")
-
 const socket = io("/")
 
 var peer = new PeerServer(undefined, {
