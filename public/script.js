@@ -1,4 +1,4 @@
-const { PeerServer } = require("peer")
+const { PeerServer } = require(["peer"])
 
 const socket = io("/")
 
