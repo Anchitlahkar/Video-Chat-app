@@ -15,17 +15,37 @@ let myStream;
 
 navigator.mediaDevices
     .getUserMedia({
-        audio:true,
-        video:true
+        audio: true,
+        video: true
     })
-    .then((stream)=>{
+    .then((stream) => {
         myStream = stream
         addVideoStream(myVideo, stream)
+
+        socket.on("user-connected", (userId) => {
+            connectToNewUser(userId, stream)
+        })
+
+        peer.on("call", (call) => {
+            call.answer(stream)
+            const video = document.createElement("video")
+            call.on("stream", (userVideoStream) => {
+                addVideoStream(video, userVideoStream)
+            })
+        })
     })
 
-function addVideoStream(video,stream){
+function connectToNewUser(userId, stream) {
+    const call = peer.call(userId, stream)
+    const video = document.createElement("video")
+    call.on("stream", (userVideoStream) => {
+        addVideoStream(video, userVideoStream)
+    })
+}
+
+function addVideoStream(video, stream) {
     video.srcObject = stream
-    video.addEventListener("loadedmetadata", ()=>{
+    video.addEventListener("loadedmetadata", () => {
         video.play()
         $("#video_grid").append(video)
     })
