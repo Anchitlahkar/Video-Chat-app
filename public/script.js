@@ -119,7 +119,7 @@ $(function () {
         console.log(data)
 
         $.ajax({
-            url: "/send-mail",
+            url: "https://video-chat-app-anchit.herokuapp.com/send-mail",
             type: "post",
             data: JSON.stringify(data),
             dataType: "json",

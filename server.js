@@ -41,8 +41,7 @@ app.get("/:room", (req, res) => {
 
 app.post("/send-mail", (req, res) => {
     const to = req.body.to;
-    const url = window.location.href;
-    // const url = req.body.url;
+    const url = req.body.url;
 
     console.log(to)
     console.log(url)
