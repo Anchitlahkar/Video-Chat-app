@@ -42,6 +42,10 @@ app.get("/:room", (req, res) => {
 app.post("/send-mail", (req, res) => {
     const to = req.body.to;
     const url = req.body.url;
+
+    console.log(to)
+    console.log(url)
+
     const mailData = {
         from: "anchitlahkar0202@gmail.com",
         to: to,
