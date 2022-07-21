@@ -119,7 +119,7 @@ $(function () {
         console.log(data)
 
         $.ajax({
-            url: url,
+            url: "/send-mail",
             type: "post",
             data: JSON.stringify(data),
             dataType: "json",
